@@ -4,3 +4,8 @@
   </intent-filter>
 </receiver>
 
+<service android:name="com.appsflyer.FirebaseInstanceIdListener">
+  <intent-filter>
+    <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+  </intent-filter>
+</service>

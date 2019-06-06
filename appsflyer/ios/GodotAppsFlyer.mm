@@ -16,7 +16,7 @@ NSDictionary *convertFromDictionary(const Dictionary& dict)
         Variant key = dict.get_key_at_index(i);
         Variant val = dict.get_value_at_index(i);
         if(key.get_type() == Variant::STRING) {
-            NSString *strKey = [NSString stringWithUTF8String:((String)key).utf8().ptr()];
+            NSString *strKey = [NSString stringWithUTF8String:((String)key).utf8().get_data()];
             if(val.get_type() == Variant::INT) {
                 int i = (int)val;
                 result[strKey] = @(i);
@@ -24,7 +24,7 @@ NSDictionary *convertFromDictionary(const Dictionary& dict)
                 double d = (double)val;
                 result[strKey] = @(d);
             } else if(val.get_type() == Variant::STRING) {
-                NSString *s = [NSString stringWithUTF8String:((String)val).utf8().ptr()];
+                NSString *s = [NSString stringWithUTF8String:((String)val).utf8().get_data()];
                 result[strKey] = s;
             } else if(val.get_type() == Variant::BOOL) {
                 BOOL b = (bool)val;
@@ -52,8 +52,8 @@ GodotAppsFlyer::~GodotAppsFlyer()
 
 void GodotAppsFlyer::init(const String& key, const String& appId)
 {
-    NSString *strKey = [NSString stringWithUTF8String:key.utf8().ptr()];
-    NSString *strAppId = [NSString stringWithUTF8String:appId.utf8().ptr()];
+    NSString *strKey = [NSString stringWithUTF8String:key.utf8().get_data()];
+    NSString *strAppId = [NSString stringWithUTF8String:appId.utf8().get_data()];
     
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = strKey;
     [AppsFlyerTracker sharedTracker].appleAppID = strAppId;
@@ -67,13 +67,20 @@ void GodotAppsFlyer::init(const String& key, const String& appId)
 
 void GodotAppsFlyer::trackEvent(const String& event, const Dictionary& params)
 {
-    NSString *eventName = [NSString stringWithUTF8String:event.utf8().ptr()];
+    NSString *eventName = [NSString stringWithUTF8String:event.utf8().get_data()];
     NSDictionary *dict = convertFromDictionary(params);
     [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValues: dict];
+}
+
+void GodotAppsFlyer::setUninstallToken(const String& token)
+{
+    NSData *data = [NSData dataWithBytes:token.utf8().get_data() length:token.utf8().length()];
+    [[AppsFlyerTracker sharedTracker] registerUninstall:data];
 }
 
 void GodotAppsFlyer::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("init", "key", "appId"), &GodotAppsFlyer::init);
     ClassDB::bind_method(D_METHOD("track_event", "event", "params"), &GodotAppsFlyer::trackEvent);
+    ClassDB::bind_method(D_METHOD("set_uninstall_token", "event"), &GodotAppsFlyer::setUninstallToken);
 }

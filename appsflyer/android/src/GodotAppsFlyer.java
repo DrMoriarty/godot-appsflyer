@@ -35,7 +35,7 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
 
     // Public methods
 
-    public void init(final String key, final String appId /* not used, placed for compatibility with iOS API */)
+    public void init(final String key, final String appId)
     {
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -66,6 +66,7 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
                             }
                         };
                     AppsFlyerLib.getInstance().init(key, conversionDataListener, activity.getApplicationContext());
+                    AppsFlyerLib.getInstance().enableUninstallTracking(appId);
                     AppsFlyerLib.getInstance().startTracking(activity.getApplication());
                     if(BuildConfig.DEBUG) {
                         AppsFlyerLib.getInstance().setDebugLog(true);
@@ -80,6 +81,10 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
     public void track_event(final String event, final Dictionary params)
     {
         AppsFlyerLib.getInstance().trackEvent(activity, event, params);
+    }
+
+    public void set_uninstall_token(final String token)
+    {
     }
 
     // Internal methods
