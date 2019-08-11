@@ -58,8 +58,8 @@ void GodotAppsFlyer::init(const String& key, const String& appId)
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = strKey;
     [AppsFlyerTracker sharedTracker].appleAppID = strAppId;
     [AppsFlyerTracker sharedTracker].delegate = nil;
-#ifdef DEBUG
-    [AppsFlyerTracker sharedTracker].isDebug = true;
+#ifdef DEBUG_ENABLED
+    [AppsFlyerTracker sharedTracker].isDebug = YES;
 #endif
 
     [[AppsFlyerTracker sharedTracker] trackAppLaunch];
@@ -69,6 +69,7 @@ void GodotAppsFlyer::trackEvent(const String& event, const Dictionary& params)
 {
     NSString *eventName = [NSString stringWithUTF8String:event.utf8().get_data()];
     NSDictionary *dict = convertFromDictionary(params);
+    NSLog(@"Send AppsFlyer event: %@, %@", eventName, dict);
     [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValues: dict];
 }
 
