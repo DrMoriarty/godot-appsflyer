@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Payload container for the `generateInviteUrlWithLinkGenerator:completionHandler:` from `AppsFlyerShareInviteHelper`
  */
-@interface AppsFlyerLinkGenerator: NSObject
+@interface AppsFlyerLinkGenerator : NSObject
 
 /// Instance initialization is not allowed. Use generated instance
 /// from `-[AppsFlyerShareInviteHelper generateInviteUrlWithLinkGenerator:completionHandler]`
@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Instance initialization is not allowed. Use generated instance
 /// from `-[AppsFlyerShareInviteHelper generateInviteUrlWithLinkGenerator:completionHandler]`
 + (instancetype)new NS_UNAVAILABLE;
+
+@property(nonatomic, nullable) NSString *brandDomain;
 
 /// The channel through which the invite was sent (e.g. Facebook/Gmail/etc.). Usage: Recommended
 - (void)setChannel           :(nonnull NSString *)channel;
@@ -41,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Base deeplink path
 - (void)setBaseDeeplink      :(nonnull NSString *)baseDeeplink;
 /// A single key value custom parameter. Usage: Optional
-- (void)addParameterValue    :(nonnull NSString *)value forKey:(NSString*)key;
+- (void)addParameterValue    :(nonnull NSString *)value forKey:(NSString *)key;
 /// Multiple key value custom parameters. Usage: Optional
 - (void)addParameters        :(nonnull NSDictionary *)parameters;
 
