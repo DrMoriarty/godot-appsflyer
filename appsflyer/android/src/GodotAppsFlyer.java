@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.AppsFlyerConversionListener;
+import com.appsflyer.AppsFlyerInAppPurchaseValidatorListener;
 import com.godot.game.BuildConfig;
 
 public class GodotAppsFlyer extends Godot.SingletonBase {
@@ -28,14 +29,16 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
     {
         registerClass("GodotAppsFlyer", new String[]{
                 "init",
-                "track_event"
+                "track_event",
+                "track_revenue",
+                "appsflyer_id"
             });
         activity = (Godot)p_activity;
     }
 
     // Public methods
 
-    public void init(final String key, final String appId)
+    public void init(final String key)
     {
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -44,13 +47,13 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
                     AppsFlyerConversionListener conversionDataListener = new AppsFlyerConversionListener() {
                             /* Returns the attribution data. Note - the same conversion data is returned every time per install */
                             @Override
-                            public void onInstallConversionDataLoaded(Map<String, String> conversionData) {
+                            public void onConversionDataSuccess(Map<String, Object> conversionData) {
                                 for (String attrName : conversionData.keySet()) {
                                     Log.d("godot", "[AppsFlyer] Attribute: " + attrName + " = " + conversionData.get(attrName));
                                 }
                             }
                             @Override
-                            public void onInstallConversionFailure(String errorMessage) {
+                            public void onConversionDataFail(String errorMessage) {
                                 Log.e("godot", "[AppsFlyer] Error getting conversion data: " + errorMessage);
                             }
                             /* Called only when a Deep Link is opened */
@@ -66,11 +69,20 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
                             }
                         };
                     AppsFlyerLib.getInstance().init(key, conversionDataListener, activity.getApplicationContext());
-                    AppsFlyerLib.getInstance().enableUninstallTracking(appId);
                     AppsFlyerLib.getInstance().startTracking(activity.getApplication());
                     if(BuildConfig.DEBUG) {
                         AppsFlyerLib.getInstance().setDebugLog(true);
                     }
+                    AppsFlyerLib.getInstance().
+                        registerValidatorListener(activity,
+                                                  new AppsFlyerInAppPurchaseValidatorListener() {
+                                                      public void onValidateInApp() {
+                                                          Log.d("godot", "[AppsFlyer] Purchase validated successfully");
+                                                      }
+                                                      public void onValidateInAppFailure(String error) {
+                                                          Log.d("godot", "[AppsFlyer] onValidateInAppFailure called: " + error);
+                                                      }
+                                                  });
                 } catch (Exception e) {
                     Log.e("godot", "Failed to initialize AppsFlyerSdk: " + e.getMessage()); 
                 }
@@ -85,6 +97,16 @@ public class GodotAppsFlyer extends Godot.SingletonBase {
 
     public void set_uninstall_token(final String token)
     {
+    }
+
+    public void track_revenue(final String revenue, final String currency, final String signature, final String originalJson, final String public_key)
+    {
+        AppsFlyerLib.getInstance().validateAndTrackInAppPurchase(activity, public_key, signature, originalJson, revenue, currency, null);
+    }
+
+    public String appsflyer_id()
+    {
+        return AppsFlyerLib.getInstance().getAppsFlyerUID(activity);
     }
 
     // Internal methods

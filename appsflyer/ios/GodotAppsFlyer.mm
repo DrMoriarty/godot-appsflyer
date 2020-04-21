@@ -79,9 +79,17 @@ void GodotAppsFlyer::setUninstallToken(const String& token)
     [[AppsFlyerTracker sharedTracker] registerUninstall:data];
 }
 
+String GodotAppsFlyer::appsFlyerId()
+{
+    NSString *appsflyerId = [AppsFlyerTracker sharedTracker].getAppsFlyerUID;
+    String result([appsflyerId UTF8String]);
+    return result;
+}
+
 void GodotAppsFlyer::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("init", "key", "appId"), &GodotAppsFlyer::init);
     ClassDB::bind_method(D_METHOD("track_event", "event", "params"), &GodotAppsFlyer::trackEvent);
     ClassDB::bind_method(D_METHOD("set_uninstall_token", "event"), &GodotAppsFlyer::setUninstallToken);
+    ClassDB::bind_method(D_METHOD("appsflyer_id"), &GodotAppsFlyer::appsFlyerId);
 }

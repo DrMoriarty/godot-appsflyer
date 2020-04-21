@@ -22,6 +22,7 @@ public:
     void init(const String& key, const String& appId);
     void trackEvent(const String& event, const Dictionary& params);
     void setUninstallToken(const String& token);
+    String appsFlyerId();
 
 };
 
