@@ -1,0 +1,11 @@
+[config]
+
+name="AppsFlyer"
+binary_type="remote"
+binary="ru.mobilap.godot:godot-appsflyer:+"
+
+[dependencies]
+
+local=[]
+remote=[]
+custom_maven_repos=["https://dl.bintray.com/mobilap/maven/"]
