@@ -1,0 +1,16 @@
+[general]
+
+singleton=true
+load_once=true
+symbol_prefix="appsflyer_"
+reloadable=false
+
+[entry]
+
+iOS.armv7="res://addons/bin/appsflyer-godot.xcframework"
+iOS.arm64="res://addons/bin/appsflyer-godot.xcframework"
+
+[dependencies]
+
+iOS.armv7=[  ]
+iOS.arm64=[  ]
