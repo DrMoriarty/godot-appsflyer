@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf "./build"
+#rm -rf "./build"
 
 xcodebuild archive \
     -project "./$1" \

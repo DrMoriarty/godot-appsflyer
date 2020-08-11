@@ -9,27 +9,12 @@
 /* Begin PBXBuildFile section */
 		519534CD24D847AA007FF66C /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 519534CA24D847AA007FF66C /* entry.cpp */; };
 		51B4368624D8707E0040DBF7 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4368524D8707E0040DBF7 /* AppsFlyerLib.framework */; };
-		51B4368724D8707E0040DBF7 /* AppsFlyerLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4368524D8707E0040DBF7 /* AppsFlyerLib.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		51B4368B24D870940040DBF7 /* AppsFlyer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 51B4368924D870940040DBF7 /* AppsFlyer.hpp */; };
 		51B4368C24D870940040DBF7 /* AppsFlyer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 51B4368A24D870940040DBF7 /* AppsFlyer.mm */; };
 		51B4368E24D870EE0040DBF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4368D24D870EE0040DBF7 /* UIKit.framework */; };
 		51E8DE9A24D83FF200CB0940 /* libgodot-cpp.ios.release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E8DE9924D83FC100CB0940 /* libgodot-cpp.ios.release.a */; };
 		90A13CED24AB317C00E8464F /* gdnative_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A13CEB24AB317C00E8464F /* gdnative_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		51B4368824D8707E0040DBF7 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				51B4368724D8707E0040DBF7 /* AppsFlyerLib.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		519534CA24D847AA007FF66C /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
@@ -127,7 +112,6 @@
 				90A13CE424AB317C00E8464F /* Sources */,
 				90A13CE524AB317C00E8464F /* Frameworks */,
 				90A13CE624AB317C00E8464F /* Resources */,
-				51B4368824D8707E0040DBF7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
