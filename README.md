@@ -1,4 +1,4 @@
-# AppsFlyer plugin for Godot Engine
+# AppsFlyer plugin for Godot Engine (iOS/Android)
 
 ## Installation
 
