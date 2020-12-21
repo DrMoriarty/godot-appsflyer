@@ -1,0 +1,28 @@
+{
+  "name": "appsflyer-plugin",
+  "description": "AppsFlyer plugin for Godot engine",
+  "version": "0.1.0",
+  "license": "MIT",
+  "url": "https://github.com/DrMoriarty/godot-appsflyer.git",
+  "dependencies": [
+  ],
+  "files": {
+    "scripts": "scripts"
+  },
+  "platform_ios": {
+    "dependencies": [
+    ],
+    "files": {
+      "ios-framework/build/appsflyer.gdnlib": "addons/appsflyer-ios/",
+      "ios-framework/build/appsflyer.gdns": "addons/appsflyer-ios/",
+      "ios-framework/build/.gitignore": "addons/appsflyer-ios/",
+      "ios-framework/build/appsflyer-godot.xcframework": "addons/appsflyer-ios/appsflyer-godot.xcframework"
+    }
+  },
+  "platform_android": {
+    "files": {
+      "android-plugin/AppsFlyer.gdap": "android/plugins/",
+      "android-plugin/build/outputs/aar/AppsFlyer.release.aar": "android/plugins/"
+    }
+  }
+}

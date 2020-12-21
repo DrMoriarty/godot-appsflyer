@@ -25,12 +25,10 @@ import org.godotengine.godot.plugin.SignalInfo;
 public class AppsFlyer extends GodotPlugin {
 
     private final String TAG = AppsFlyer.class.getName();
-    private Godot activity = null;
 
     public AppsFlyer(Godot godot) 
     {
         super(godot);
-        activity = godot;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class AppsFlyer extends GodotPlugin {
 
     public void init(final String key, final boolean ProductionMode)
     {
-        activity.runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -93,13 +91,13 @@ public class AppsFlyer extends GodotPlugin {
                                 Log.e(TAG, "Error onAttributionFailure : " + errorMessage);
                             }
                         };
-                    AppsFlyerLib.getInstance().init(key, conversionDataListener, activity.getApplicationContext());
-                    AppsFlyerLib.getInstance().startTracking(activity.getApplication());
+                    AppsFlyerLib.getInstance().init(key, conversionDataListener, getActivity().getApplicationContext());
+                    AppsFlyerLib.getInstance().startTracking(getActivity().getApplication());
                     if(!ProductionMode) {
                         AppsFlyerLib.getInstance().setDebugLog(true);
                     }
                     AppsFlyerLib.getInstance().
-                        registerValidatorListener(activity,
+                        registerValidatorListener(getActivity(),
                                                   new AppsFlyerInAppPurchaseValidatorListener() {
                                                       public void onValidateInApp() {
                                                           Log.d(TAG, "Purchase validated successfully");
@@ -117,7 +115,7 @@ public class AppsFlyer extends GodotPlugin {
     
     public void track_event(final String event, final Dictionary params)
     {
-        AppsFlyerLib.getInstance().trackEvent(activity, event, params);
+        AppsFlyerLib.getInstance().trackEvent(getActivity(), event, params);
     }
 
     public void set_uninstall_token(final String token)
@@ -126,12 +124,12 @@ public class AppsFlyer extends GodotPlugin {
 
     public void track_revenue(final String revenue, final String currency, final String signature, final String originalJson, final String public_key)
     {
-        AppsFlyerLib.getInstance().validateAndTrackInAppPurchase(activity, public_key, signature, originalJson, revenue, currency, null);
+        AppsFlyerLib.getInstance().validateAndTrackInAppPurchase(getActivity(), public_key, signature, originalJson, revenue, currency, null);
     }
 
     public String appsflyer_id()
     {
-        return AppsFlyerLib.getInstance().getAppsFlyerUID(activity);
+        return AppsFlyerLib.getInstance().getAppsFlyerUID(getActivity());
     }
 
     // Internal methods
