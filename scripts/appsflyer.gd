@@ -2,7 +2,7 @@ extends Node
 
 var _i = null
 var _cached_appsflyer_id = null
-onready var _localnotification := $'/root/localnotification'
+onready var _localnotification := $'/root/localnotification' if has_node('/root/localnotification') else null
 
 func _ready():
     if Engine.has_singleton("AppsFlyer"):
