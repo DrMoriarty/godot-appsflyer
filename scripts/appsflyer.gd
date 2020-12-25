@@ -10,7 +10,7 @@ func _ready():
     elif type_exists('AppsFlyer'):
         _i = ClassDB.instance('AppsFlyer')
     elif OS.get_name() == 'iOS':
-        _i = load("res://addons/bin/appsflyer.gdns").new()
+        _i = load("res://addons/appsflyer-ios/appsflyer.gdns").new()
     else:
         push_warning('AppsFlyer plugin not found!')
     var app_key = null
