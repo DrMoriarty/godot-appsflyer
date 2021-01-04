@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5123F01825A33AD800DDF370 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5123F01725A33AD800DDF370 /* AdSupport.framework */; };
+		5123F01A25A33ADD00DDF370 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5123F01925A33ADD00DDF370 /* iAd.framework */; };
 		519534CD24D847AA007FF66C /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 519534CA24D847AA007FF66C /* entry.cpp */; };
 		51B4368624D8707E0040DBF7 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4368524D8707E0040DBF7 /* AppsFlyerLib.framework */; };
 		51B4368B24D870940040DBF7 /* AppsFlyer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 51B4368924D870940040DBF7 /* AppsFlyer.hpp */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5123F01725A33AD800DDF370 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		5123F01925A33ADD00DDF370 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		519534CA24D847AA007FF66C /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
 		51B4368524D8707E0040DBF7 /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppsFlyerLib.framework; path = gdnative_ios/AppsFlyerLib.framework; sourceTree = "<group>"; };
 		51B4368924D870940040DBF7 /* AppsFlyer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppsFlyer.hpp; sourceTree = "<group>"; };
@@ -34,6 +38,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				51E8DE9A24D83FF200CB0940 /* libgodot-cpp.ios.release.a in Frameworks */,
+				5123F01A25A33ADD00DDF370 /* iAd.framework in Frameworks */,
+				5123F01825A33AD800DDF370 /* AdSupport.framework in Frameworks */,
 				51B4368E24D870EE0040DBF7 /* UIKit.framework in Frameworks */,
 				51B4368624D8707E0040DBF7 /* AppsFlyerLib.framework in Frameworks */,
 			);
@@ -82,6 +88,8 @@
 		90A13CF424AB37D900E8464F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5123F01925A33ADD00DDF370 /* iAd.framework */,
+				5123F01725A33AD800DDF370 /* AdSupport.framework */,
 				51B4368D24D870EE0040DBF7 /* UIKit.framework */,
 				51B4368524D8707E0040DBF7 /* AppsFlyerLib.framework */,
 				51E8DE9924D83FC100CB0940 /* libgodot-cpp.ios.release.a */,

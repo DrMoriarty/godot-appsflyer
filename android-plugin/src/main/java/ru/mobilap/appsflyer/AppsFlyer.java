@@ -92,7 +92,7 @@ public class AppsFlyer extends GodotPlugin {
                             }
                         };
                     AppsFlyerLib.getInstance().init(key, conversionDataListener, getActivity().getApplicationContext());
-                    AppsFlyerLib.getInstance().startTracking(getActivity().getApplication());
+                    AppsFlyerLib.getInstance().start(getActivity().getApplication());
                     if(!ProductionMode) {
                         AppsFlyerLib.getInstance().setDebugLog(true);
                     }
@@ -115,7 +115,7 @@ public class AppsFlyer extends GodotPlugin {
     
     public void track_event(final String event, final Dictionary params)
     {
-        AppsFlyerLib.getInstance().trackEvent(getActivity(), event, params);
+        AppsFlyerLib.getInstance().logEvent(getActivity(), event, params);
     }
 
     public void set_uninstall_token(final String token)
@@ -124,7 +124,7 @@ public class AppsFlyer extends GodotPlugin {
 
     public void track_revenue(final String revenue, final String currency, final String signature, final String originalJson, final String public_key)
     {
-        AppsFlyerLib.getInstance().validateAndTrackInAppPurchase(getActivity(), public_key, signature, originalJson, revenue, currency, null);
+        AppsFlyerLib.getInstance().validateAndLogInAppPurchase(getActivity(), public_key, signature, originalJson, revenue, currency, null);
     }
 
     public String appsflyer_id()

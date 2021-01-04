@@ -49,13 +49,13 @@ dependencies {
      library when building the final binary.
      */
     compileOnly fileTree(dir: 'libs', include: ['godot-lib*.aar'])
-    implementation 'com.appsflyer:af-android-sdk:5.+'
+    implementation 'com.appsflyer:af-android-sdk:6.1.+'
     implementation 'com.android.installreferrer:installreferrer:1.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
 }
 
 group = 'ru.mobilap.godot'
-version = '0.1.0'
+version = '0.2.0'
 ext {
     artifact = 'godot-appsflyer'
 }

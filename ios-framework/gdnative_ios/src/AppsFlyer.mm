@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppsFlyer.hpp"
-#import <AppsFlyerLib/AppsFlyerTracker.h>
+#import <AppsFlyerLib/AppsFlyerLib.h>
 
 using namespace godot;
 
@@ -63,14 +63,12 @@ void AppsFlyer::init(const String key, const String appId)
     NSString *strKey = [NSString stringWithUTF8String:key.utf8().get_data()];
     NSString *strAppId = [NSString stringWithUTF8String:appId.utf8().get_data()];
     
-    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = strKey;
-    [AppsFlyerTracker sharedTracker].appleAppID = strAppId;
-    [AppsFlyerTracker sharedTracker].delegate = nil;
+    [AppsFlyerLib shared].appsFlyerDevKey = strKey;
+    [AppsFlyerLib shared].appleAppID = strAppId;
+    [AppsFlyerLib shared].delegate = nil;
 #ifdef DEBUG_ENABLED
-    [AppsFlyerTracker sharedTracker].isDebug = YES;
+    [AppsFlyerLib shared].isDebug = YES;
 #endif
-
-    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 }
 
 void AppsFlyer::trackEvent(const String event, const Dictionary params)
@@ -78,18 +76,18 @@ void AppsFlyer::trackEvent(const String event, const Dictionary params)
     NSString *eventName = [NSString stringWithUTF8String:event.utf8().get_data()];
     NSDictionary *dict = convertFromDictionary(params);
     NSLog(@"Send AppsFlyer event: %@, %@", eventName, dict);
-    [[AppsFlyerTracker sharedTracker] trackEvent:eventName withValues: dict];
+    [[AppsFlyerLib shared] logEvent:eventName withValues: dict];
 }
 
 void AppsFlyer::setUninstallToken(const String token)
 {
     NSData *data = [NSData dataWithBytes:token.utf8().get_data() length:token.utf8().length()];
-    [[AppsFlyerTracker sharedTracker] registerUninstall:data];
+    [[AppsFlyerLib shared] registerUninstall:data];
 }
 
 String AppsFlyer::appsFlyerId()
 {
-    NSString *appsflyerId = [AppsFlyerTracker sharedTracker].getAppsFlyerUID;
+    NSString *appsflyerId = [AppsFlyerLib shared].getAppsFlyerUID;
     String result([appsflyerId UTF8String]);
     return result;
 }
