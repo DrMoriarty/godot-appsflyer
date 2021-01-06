@@ -58,7 +58,7 @@ void AppsFlyer::_init()
 {
 }
 
-void AppsFlyer::init(const String key, const String appId)
+void AppsFlyer::init(const String key, const String appId, bool production)
 {
     NSString *strKey = [NSString stringWithUTF8String:key.utf8().get_data()];
     NSString *strAppId = [NSString stringWithUTF8String:appId.utf8().get_data()];
@@ -66,9 +66,9 @@ void AppsFlyer::init(const String key, const String appId)
     [AppsFlyerLib shared].appsFlyerDevKey = strKey;
     [AppsFlyerLib shared].appleAppID = strAppId;
     [AppsFlyerLib shared].delegate = nil;
-#ifdef DEBUG_ENABLED
-    [AppsFlyerLib shared].isDebug = YES;
-#endif
+    if(!production) {
+        [AppsFlyerLib shared].isDebug = YES;
+    }
 }
 
 void AppsFlyer::trackEvent(const String event, const Dictionary params)

@@ -21,7 +21,7 @@ func _ready():
         app_id = ProjectSettings.get_setting('AppsFlyer/APP_ID')
     if app_key == null:
         push_warning('You need to init AppsFlyer with app_key before using')
-    elif app_key != null and app_id != null and app_id != '':
+    elif app_key != null and app_id != null and app_id != '' and OS.get_name() == 'iOS':
         init_with_id(app_key, app_id)
     else:
         init(app_key)
@@ -36,8 +36,9 @@ func init(app_key: String) -> void:
 
 func init_with_id(app_key: String, app_id: String) -> void:
     if _i != null:
+        var production = !OS.is_debug_build()
         print('AppsFlyer plugin inited with key and app id')
-        _i.init(app_key, app_id)
+        _i.init(app_key, app_id, production)
 
 func screen(name: String, screen_type: String) -> void:
     _track_event('af_content_view', {'af_content': name, 'af_content_type': screen_type})

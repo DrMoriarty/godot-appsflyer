@@ -1,7 +1,7 @@
 {
   "name": "appsflyer",
   "description": "AppsFlyer plugin for Godot engine",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "url": "https://github.com/DrMoriarty/godot-appsflyer.git",
   "dependencies": [
@@ -14,6 +14,9 @@
   "variables": {
     "AppsFlyer/DevKey": {
       "info": "Set your DevKey here"
+    },
+    "AppsFlyer/APP_ID": {
+      "info": "Set your Apple App ID here"
     }
   },
   "autoload": {
