@@ -1,9 +1,17 @@
 {
   "name": "appsflyer",
-  "description": "AppsFlyer plugin for Godot engine",
-  "version": "0.2.1",
+  "display_name": "AppsFlyer",
+  "description": "AppsFlyer SDK. Attribution data you can trust.",
+  "version": "0.2.2",
+  "godot_version": "3.2.3",
   "license": "MIT",
+  "category": "misc",
   "url": "https://github.com/DrMoriarty/godot-appsflyer.git",
+  "author": {
+    "name": "DrMoriarty",
+    "url": "https://github.com/DrMoriarty",
+    "donate": "https://ko-fi.com/drmoriarty"
+  },
   "dependencies": [
     "nativelib-export"
   ],

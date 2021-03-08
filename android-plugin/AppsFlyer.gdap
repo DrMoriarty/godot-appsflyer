@@ -7,5 +7,5 @@ binary="AppsFlyer.release.aar"
 [dependencies]
 
 local=[]
-remote=["com.appsflyer:af-android-sdk:5.+"]
+remote=["com.appsflyer:af-android-sdk:6.1.+"]
 custom_maven_repos=["https://dl.bintray.com/mobilap/maven/"]
