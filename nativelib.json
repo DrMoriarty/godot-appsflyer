@@ -2,7 +2,7 @@
   "name": "appsflyer",
   "display_name": "AppsFlyer",
   "description": "AppsFlyer SDK. Attribution data you can trust.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "godot_version": "3.2.3",
   "license": "MIT",
   "category": "misc",
